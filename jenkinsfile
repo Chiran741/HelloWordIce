@@ -1,0 +1,25 @@
+pipeline {
+  agent any 
+  parameters {
+      string(name: 'version', defaultValue:'1.0', description: 'this is for build version')
+      choice(name: 'testenv', choices: ['qa', 'uat', 'prod'], description: 'this is for test env')
+             }
+    stages {
+	  stage ('Build') {
+	    steps {
+		  echo " This is build stage"
+	       	  }
+	               	 }
+		 stage ('deploy') {
+		     steps {
+		         echo "this is deploy stage"
+		           }
+	                      }
+		 stage ('test') {
+		     steps {
+		         echo "this is testing phase"
+                         echo "this is testing stage in ${params.testenv}"
+		           }
+	                 	}
+              }
+           }
